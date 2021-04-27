@@ -1,0 +1,15 @@
+[package]
+name = "vdf"
+version = "0.1.0"
+edition = "2018"
+authors = ["RandChain https://github.com/rand-chain/"]
+description = "Pie19 VDF (https://eprint.iacr.org/2018/627.pdf)."
+
+[dependencies]
+rug = "1.3.0"
+sha2 = "0.9.1"
+elapsed = "0.1.2"
+ecvrf = "0.4.2"
+lazy_static = "1.3.0"
+serialization = { path = "../serialization" }
+serialization_derive = { path = "../serialization_derive" }

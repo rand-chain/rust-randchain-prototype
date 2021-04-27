@@ -1,0 +1,52 @@
+# `docker-compose up --scale node=4`
+version: '3'
+services:
+  seednode:
+    tty: true
+    image: randchain-dev/coredns:v0.1.1
+    entrypoint: coredns
+    command: ["-conf", "/etc/dnsseeder/Corefile-local"]
+    cap_add:
+      - ALL
+    depends_on:
+      - bootstrap-node
+    restart: always
+    networks:
+      randchain_privnet:
+        ipv4_address: 10.0.0.200
+    extra_hosts:
+      - "mainnet.randchain.io:10.0.0.5"
+
+  bootstrap-node:
+    tty: true
+    image: randchain-dev/randchaind:latest
+    entrypoint: /bin/randchaind
+    command: ["-s", "10.0.0.200:53"]
+    cap_add:
+      - ALL
+    environment:
+      - RUST_BACKTRACE=full
+      - RUST_LOG=trace
+    networks:
+      randchain_privnet:
+        ipv4_address: 10.0.0.5
+
+  node:
+    tty: true
+    image: randchain-dev/randchaind:latest
+    entrypoint: /bin/randchaind
+    command: ["-s", "10.0.0.200:53", "-p", "10.0.0.5"]
+    cap_add:
+      - ALL
+    environment:
+      - RUST_BACKTRACE=full
+      - RUST_LOG=trace
+    networks:
+      - randchain_privnet
+
+networks:
+  randchain_privnet:
+    driver: macvlan
+    ipam:
+      config:
+        - subnet: 10.0.0.0/8

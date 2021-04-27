@@ -1,0 +1,120 @@
+name: randchaind
+version: "0.1.0"
+author: RandChain
+about: RandChain daemon client
+args:
+    - testnet:
+        long: testnet
+        help: Use the test network (Testnet3).
+    - regtest:
+        long: regtest
+        help: Use a private network for regression tests.
+    - peers:
+        short: p
+        long: peers
+        value_name: IP[:PORT],IP:[:PORT],...
+        help: Connect only to the specified nodes.
+        takes_value: true
+    - peers-file:
+        short: P
+        long: peers-file
+        value_name: PATH
+        help: Connect to nodes specified in the file
+        takes_value: true
+    - host:
+        short: h
+        long: host
+        value_name: HOST
+        help: Listen for connections on HOST.
+        takes_value: true
+    - seednodes:
+        short: s
+        long: seednodes
+        value_name: IP:[:PORT],IP:[:PORT],...
+        help: Connect to a seed-node to retrieve peer addresses, and disconnect.
+        takes_value: true
+    - port:
+        long: port
+        value_name: PORT
+        help: Listen for connections on PORT.
+        takes_value: true
+    - quiet:
+        short: q
+        long: quiet
+        help: Do not show any synchronization information in the console.
+    - data-dir:
+        short: d
+        long: data-dir
+        value_name: PATH
+        help: Specify the database and configuration directory PATH.
+        takes_value: true
+    - db-cache:
+        long: db-cache
+        value_name: SIZE
+        help: Sets the database cache size.
+        takes_value: true
+    - only-net:
+        long: only-net
+        value_name: NET
+        help: Only connect to nodes in network version <NET> (ipv4 or ipv6).
+        takes_value: true
+    - no-jsonrpc:
+        long: no-jsonrpc
+        help: Disable the JSON-RPC API server.
+    - jsonrpc-port:
+        long: jsonrpc-port
+        help: Specify the PORT for the JSONRPC API server.
+        takes_value: true
+        value_name: PORT
+    - jsonrpc-interface:
+        long: jsonrpc-interface
+        help: The hostname portion of the JSONRPC API server.
+        takes_value: true
+        value_name: INTERFACE
+    - jsonrpc-cors:
+        long: jsonrpc-cors
+        help: Specify CORS header for JSON-RPC API responses.
+        takes_value: true
+        value_name: URL
+    - jsonrpc-apis:
+        long: jsonrpc-apis
+        help: Specify the APIs available through the JSONRPC interface. APIS is a comma-delimited list of API names. Available APIs are blockchain, network, miner, raw.
+        takes_value: true
+        value_name: APIS
+    - jsonrpc-hosts:
+        long: jsonrpc-hosts
+        help: List of allowed Host header values.
+        takes_value: true
+        value_name: HOSTS
+    - blocknotify:
+        long: blocknotify
+        help: Execute COMMAND when the best block changes (%s in COMMAND is replaced by the block hash).
+        takes_value: true
+        value_name: COMMAND
+    - verification-level:
+        long: verification-level
+        help: Sets the Blocks verification level to full (default), header (scripts are not verified), or none (no verification at all).
+        takes_value: true
+        value_name: LEVEL
+    - verification-edge:
+        long: verification-edge
+        help: Non-default verification-level is applied until a block with given hash is met.
+        takes_value: true
+        value_name: BLOCK
+    - num-nodes:
+        long: num-nodes
+        short: n
+        help: Number of nodes in the network
+        takes_value: true
+        value_name: NUMBER
+    - num-miners:
+        long: num-miners
+        help: Number of miners in a single node
+        takes_value: true
+        value_name: NUMBER
+    - blocktime:
+        long: blocktime
+        short: b
+        help: Time for each block
+        takes_value: true
+        value_name: NUMBER

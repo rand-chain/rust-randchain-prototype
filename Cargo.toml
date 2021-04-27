@@ -1,0 +1,68 @@
+[package]
+name = "randchain"
+version = "0.1.0"
+license = "GPL-3.0"
+authors = ["RandChain https://github.com/rand-chain/"]
+description = "RandChain: Decentralised Randomness Beacon from Sequential Proof-of-Work. https://eprint.iacr.org/2020/1033.pdf"
+
+[dependencies]
+ecvrf = "0.4.2"
+hex = "0.4"
+log = "0.4"
+env_logger = "0.5"
+app_dirs = { git = "https://github.com/paritytech/app-dirs-rs" }
+libc = "0.2"
+clap = { version = "2", features = ["yaml"] }
+chain = { path = "chain" }
+bitcrypto = { path = "crypto" }
+db = { path = "db" }
+logs = { path = "logs" }
+message = { path = "message" }
+miner = { path = "miner" }
+network = { path = "network" }
+p2p = { path = "p2p" }
+primitives = { path = "primitives" }
+rpc = { path = "rpc" }
+serialization = { path = "serialization" }
+serialization_derive = { path = "serialization_derive" }
+storage = { path = "storage" }
+sync = { path = "sync" }
+test-data = { path = "test-data" }
+vdf = { path = "vdf" }
+verification = { path = "verification" }
+
+[profile.dev]
+debug = true
+panic = 'abort'
+
+[profile.release]
+debug = true
+panic = 'abort'
+
+[profile.test]
+debug = true
+
+[[bin]]
+path = "randchaind/main.rs"
+name = "randchaind"
+
+[workspace]
+members = [
+			"chain",
+			"crypto",
+			"db",
+			"logs",
+			"message",
+			"miner",
+			"network",
+			"p2p",
+			"primitives",
+			"rpc",
+			"serialization",
+			"serialization_derive",
+			"storage",
+			"sync",
+			"test-data",
+			"vdf",
+			"verification",
+		]
